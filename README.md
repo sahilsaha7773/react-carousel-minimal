@@ -3,6 +3,9 @@
 
 Easy to use, responsive and customizable carousel component for React Projects.
 
+## Installation
+`npm i react-carousel-minimal`
+
 ## Features
   - Responsive
   - Customizable
