@@ -1,7 +1,7 @@
 {
   "name": "react-carousel-minimal",
   "description": "Responsive, minimal and customizable Carousel Component for React Projects.",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
