@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './styles/index.css';
 
 function Carousel(props) {
-  const {
+  var {
     data,
     time,
     width,
@@ -17,7 +17,7 @@ function Carousel(props) {
     dots,
     automatic
   } = props;
-
+  
   const [slide, setSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [change, setChange] = useState(0);
@@ -45,7 +45,7 @@ function Carousel(props) {
           if (index < 0)
             index = data.length - 1;
         }
-      }, time);
+      }, time ? time : 2000);
 
 
 

@@ -4,7 +4,7 @@ import { Carousel } from './lib';
 function App() {
   const data = [
     {
-      image: "https://www.w3schools.com/howto/img_mountains_wide.jpg",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
       caption: "Image 1"
     },
     {
@@ -30,7 +30,7 @@ function App() {
       <div>
         <Carousel
           data={data}
-          time={2000}
+          time={4000}
           width="600px"
           height="400px"
           captionStyle={captionStyle}
