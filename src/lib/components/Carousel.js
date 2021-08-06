@@ -89,7 +89,7 @@ function Carousel(props) {
   }, [slide, isPaused]);
 
   return (
-    <div style={style}>
+    <div style={style} className="box">
       <div style={{ width: width ? width : "600px", height: height ? height : "400px" }}>
         <div
           className="carousel-container"
@@ -117,7 +117,7 @@ function Carousel(props) {
                     <div className="slide-number" style={slideNumberStyle}>{index + 1} / {data.length}</div>
                   }
                   <img src={item.image} alt={item.caption} className="carousel-image" style={{ borderRadius: radius }} />
-                  <div className={`carousel-caption-${captionPosition}`} style={captionStyle}>{item.caption}</div>
+                  <div className={`carousel-caption-${captionPosition ? captionPosition : "bottom"}`} style={captionStyle}>{item.caption}</div>
                   {/* {automatic && <div className="bar">
                     <div className="progress" id="progress">
 
@@ -137,7 +137,7 @@ function Carousel(props) {
             {
               data.map((item, index) => {
                 return (
-                  <span class="dot" onClick={(e) => setSlide(index)}></span>
+                  <span className="dot" key={index} onClick={(e) => setSlide(index)}></span>
                 );
               })
             }
