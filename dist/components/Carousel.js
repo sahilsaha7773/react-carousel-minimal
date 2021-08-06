@@ -93,7 +93,8 @@ function Carousel(props) {
     //return () => clearInterval(progressInterval);
   }, [slide, isPaused]);
   return /*#__PURE__*/_react.default.createElement("div", {
-    style: style
+    style: style,
+    className: "box"
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
       width: width ? width : "600px",
@@ -131,7 +132,7 @@ function Carousel(props) {
         borderRadius: radius
       }
     }), /*#__PURE__*/_react.default.createElement("div", {
-      className: "carousel-caption-".concat(captionPosition),
+      className: "carousel-caption-".concat(captionPosition ? captionPosition : "bottom"),
       style: captionStyle
     }, item.caption));
   }), isPaused && /*#__PURE__*/_react.default.createElement(_icons.PauseCircleFilled, {
@@ -155,7 +156,8 @@ function Carousel(props) {
     className: "dots"
   }, data.map((item, index) => {
     return /*#__PURE__*/_react.default.createElement("span", {
-      class: "dot",
+      className: "dot",
+      key: index,
       onClick: e => setSlide(index)
     });
   }))));
