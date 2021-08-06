@@ -11,8 +11,6 @@ require("core-js/modules/es.regexp.exec.js");
 
 require("core-js/modules/es.string.replace.js");
 
-var _icons = require("@material-ui/icons");
-
 var _react = _interopRequireWildcard(require("react"));
 
 require("./styles/index.css");
@@ -22,7 +20,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function Carousel(props) {
-  const {
+  var {
     data,
     time,
     width,
@@ -56,7 +54,7 @@ function Carousel(props) {
           if (index >= data.length) index = 0;
           if (index < 0) index = data.length - 1;
         }
-      }, time);
+      }, time ? time : 2000);
       return () => {
         clearInterval(interval);
       };
@@ -97,17 +95,13 @@ function Carousel(props) {
     className: "box"
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
-      width: width ? width : "600px",
+      maxWidth: width ? width : "600px",
       height: height ? height : "400px"
     }
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "carousel-container",
     style: {
       borderRadius: radius
-    },
-    onMouseLeave: e => {
-      console.log("out");
-      setIsPaused(false);
     }
   }, data.map((item, index) => {
     return /*#__PURE__*/_react.default.createElement("div", {
@@ -117,6 +111,17 @@ function Carousel(props) {
         setIsPaused(true);
       },
       onMouseUp: e => {
+        console.log("out");
+        setIsPaused(false);
+      },
+      onMouseLeave: e => {
+        console.log("out");
+        setIsPaused(false);
+      },
+      onTouchStart: e => {
+        setIsPaused(true);
+      },
+      onTouchEnd: e => {
         console.log("out");
         setIsPaused(false);
       },
@@ -135,12 +140,12 @@ function Carousel(props) {
       className: "carousel-caption-".concat(captionPosition ? captionPosition : "bottom"),
       style: captionStyle
     }, item.caption));
-  }), isPaused && /*#__PURE__*/_react.default.createElement(_icons.PauseCircleFilled, {
+  }), isPaused && /*#__PURE__*/_react.default.createElement("div", {
     className: "pause-icon pause",
     style: {
       color: "white"
     }
-  }), /*#__PURE__*/_react.default.createElement("a", {
+  }, "II"), /*#__PURE__*/_react.default.createElement("a", {
     className: "prev",
     onClick: e => {
       addSlide(-1);
