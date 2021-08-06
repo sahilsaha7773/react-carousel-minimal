@@ -89,7 +89,7 @@ function Carousel(props) {
 
   return (
     <div style={style} className="box">
-      <div style={{ width: width ? width : "600px", height: height ? height : "400px" }}>
+      <div style={{ maxWidth: width ? width : "600px", height: height ? height : "400px" }}>
         <div
           className="carousel-container"
           style={{ borderRadius: radius }}
