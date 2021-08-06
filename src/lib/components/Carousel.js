@@ -1,4 +1,3 @@
-import { PauseCircleFilled } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
 import './styles/index.css';
 
@@ -17,7 +16,7 @@ function Carousel(props) {
     dots,
     automatic
   } = props;
-  
+
   const [slide, setSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [change, setChange] = useState(0);
@@ -94,11 +93,7 @@ function Carousel(props) {
         <div
           className="carousel-container"
           style={{ borderRadius: radius }}
-
-          onMouseLeave={e => {
-            console.log("out");
-            setIsPaused(false);
-          }}>
+        >
           {
             data.map((item, index) => {
               return (
@@ -109,6 +104,17 @@ function Carousel(props) {
                     setIsPaused(true);
                   }}
                   onMouseUp={e => {
+                    console.log("out");
+                    setIsPaused(false);
+                  }}
+                  onMouseLeave={e => {
+                    console.log("out");
+                    setIsPaused(false);
+                  }}
+                  onTouchStart={e => {
+                    setIsPaused(true);
+                  }}
+                  onTouchEnd={e => {
                     console.log("out");
                     setIsPaused(false);
                   }}
@@ -128,7 +134,7 @@ function Carousel(props) {
             })
           }
           {isPaused &&
-            <PauseCircleFilled className="pause-icon pause" style={{ color: "white" }} />}
+            <div className="pause-icon pause" style={{ color: "white" }}>II</div>}
           <a className="prev" onClick={(e) => { addSlide(-1); setChange(!change) }}>&#10094;</a>
           <a className="next" onClick={(e) => { addSlide(1); setChange(!change) }}>&#10095;</a>
         </div>
