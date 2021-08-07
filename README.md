@@ -1,7 +1,12 @@
 # React Carousel Minimal
-[![Build Status](https://travis-ci.com/sahilsaha7773/react-carousel-minimal.svg?branch=master)](https://travis-ci.com/sahilsaha7773/react-carousel-minimal)
-
+<p>
+ <a href="https://www.travis-ci.com/sahilsaha7773/react-carousel-minimal"><img src="https://travis-ci.com/sahilsaha7773/react-carousel-minimal.svg?branch=master"/></a>
+  <a href="https://badge.fury.io/js/react-carousel-minimal"><img src="https://badge.fury.io/js/react-carousel-minimal.svg" alt="npm version" /></a>
+</p>
 Easy to use, responsive and customizable carousel component for React Projects.
+
+## Installation
+`npm i react-carousel-minimal`
 
 ## Features
   - Responsive
