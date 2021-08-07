@@ -18,8 +18,13 @@ function Carousel(props) {
     automatic,
     pauseIconColor,
     pauseIconSize,
+    slideBackgroundColor,
+    slideImageFit,
+    fixedHeight
   } = props;
-  ///console.log(pauseIconColor);
+  var heightProperty = fixedHeight ? "height" : "maxHeight";
+  
+  //console.log(slideBackgroundColor);
   const [slide, setSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [change, setChange] = useState(0);
@@ -92,20 +97,33 @@ function Carousel(props) {
 
   return (
     <div style={style} className="box">
-      <div style={{ maxWidth: width ? width : "600px", height: height ? height : "400px" }}>
+      <div style={{
+        maxWidth: width ? width : "600px",
+        maxHeight: height ? height : "400px",
+      }}
+      >
         <Swipe
           onSwipeRight={() => { addSlide(-1); setChange(!change) }}
           onSwipeLeft={() => { addSlide(1); setChange(!change) }}
         >
           <div
             className="carousel-container"
-            style={{ borderRadius: radius }}
+            style={{
+              maxWidth: width ? width : "600px",
+              height: height ? height : "400px",
+              backgroundColor: slideBackgroundColor ? slideBackgroundColor : "darkgrey",
+              borderRadius: radius,
+            }}
           >
             {
               data.map((item, index) => {
                 return (
                   <div
                     className="carousel-item fade"
+                    style={{
+                      maxWidth: width ? width : "600px",
+                      maxHeight: height ? height : "400px"
+                    }}
                     onMouseDown={e => {
                       automatic &&
                         setIsPaused(true);
@@ -130,7 +148,11 @@ function Carousel(props) {
                     {slideNumber &&
                       <div className="slide-number" style={slideNumberStyle}>{index + 1} / {data.length}</div>
                     }
-                    <img src={item.image} alt={item.caption} className="carousel-image" style={{ borderRadius: radius }} />
+                    <img src={item.image} alt={item.caption} className="carousel-image" style={{
+                      borderRadius: radius,
+                      objectFit: slideImageFit ? slideImageFit : "cover",
+                    }}
+                    />
                     {isPaused &&
                       <div className="pause-icon pause" style={{
                         color: pauseIconColor ? pauseIconColor : "white",

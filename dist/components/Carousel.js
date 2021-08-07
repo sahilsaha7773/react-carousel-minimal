@@ -13,7 +13,11 @@ require("core-js/modules/es.string.replace.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _reactEasySwipe = _interopRequireDefault(require("react-easy-swipe"));
+
 require("./styles/index.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -32,8 +36,15 @@ function Carousel(props) {
     style,
     captionPosition,
     dots,
-    automatic
+    automatic,
+    pauseIconColor,
+    pauseIconSize,
+    slideBackgroundColor,
+    slideImageFit,
+    fixedHeight
   } = props;
+  var heightProperty = fixedHeight ? "height" : "maxHeight"; //console.log(slideBackgroundColor);
+
   const [slide, setSlide] = (0, _react.useState)(0);
   const [isPaused, setIsPaused] = (0, _react.useState)(false);
   const [change, setChange] = (0, _react.useState)(0); // const [progressWidth, setProgressWidth] = useState(1);
@@ -96,34 +107,46 @@ function Carousel(props) {
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
       maxWidth: width ? width : "600px",
-      height: height ? height : "400px"
+      maxHeight: height ? height : "400px"
+    }
+  }, /*#__PURE__*/_react.default.createElement(_reactEasySwipe.default, {
+    onSwipeRight: () => {
+      addSlide(-1);
+      setChange(!change);
+    },
+    onSwipeLeft: () => {
+      addSlide(1);
+      setChange(!change);
     }
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "carousel-container",
     style: {
+      maxWidth: width ? width : "600px",
+      height: height ? height : "400px",
+      backgroundColor: slideBackgroundColor ? slideBackgroundColor : "darkgrey",
       borderRadius: radius
     }
   }, data.map((item, index) => {
     return /*#__PURE__*/_react.default.createElement("div", {
       className: "carousel-item fade",
+      style: {
+        maxWidth: width ? width : "600px",
+        maxHeight: height ? height : "400px"
+      },
       onMouseDown: e => {
-        console.log("in");
-        setIsPaused(true);
+        automatic && setIsPaused(true);
       },
       onMouseUp: e => {
-        console.log("out");
-        setIsPaused(false);
+        automatic && setIsPaused(false);
       },
       onMouseLeave: e => {
-        console.log("out");
-        setIsPaused(false);
+        automatic && setIsPaused(false);
       },
       onTouchStart: e => {
-        setIsPaused(true);
+        automatic && setIsPaused(true);
       },
       onTouchEnd: e => {
-        console.log("out");
-        setIsPaused(false);
+        automatic && setIsPaused(false);
       },
       key: index
     }, slideNumber && /*#__PURE__*/_react.default.createElement("div", {
@@ -134,18 +157,20 @@ function Carousel(props) {
       alt: item.caption,
       className: "carousel-image",
       style: {
-        borderRadius: radius
+        borderRadius: radius,
+        objectFit: slideImageFit ? slideImageFit : "cover"
       }
-    }), /*#__PURE__*/_react.default.createElement("div", {
+    }), isPaused && /*#__PURE__*/_react.default.createElement("div", {
+      className: "pause-icon pause",
+      style: {
+        color: pauseIconColor ? pauseIconColor : "white",
+        fontSize: pauseIconSize ? pauseIconSize : "40px"
+      }
+    }, "II"), /*#__PURE__*/_react.default.createElement("div", {
       className: "carousel-caption-".concat(captionPosition ? captionPosition : "bottom"),
       style: captionStyle
     }, item.caption));
-  }), isPaused && /*#__PURE__*/_react.default.createElement("div", {
-    className: "pause-icon pause",
-    style: {
-      color: "white"
-    }
-  }, "II"), /*#__PURE__*/_react.default.createElement("a", {
+  }), /*#__PURE__*/_react.default.createElement("a", {
     className: "prev",
     onClick: e => {
       addSlide(-1);
@@ -157,7 +182,7 @@ function Carousel(props) {
       addSlide(1);
       setChange(!change);
     }
-  }, "\u276F")), dots && /*#__PURE__*/_react.default.createElement("div", {
+  }, "\u276F"))), dots && /*#__PURE__*/_react.default.createElement("div", {
     className: "dots"
   }, data.map((item, index) => {
     return /*#__PURE__*/_react.default.createElement("span", {
