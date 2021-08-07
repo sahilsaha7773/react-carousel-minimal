@@ -89,9 +89,11 @@ export default App;
 
 ```
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/35343652/128496593-b58f2fbf-d0c9-4dfe-b821-6c45810a46d0.png"/>
+  <img src="https://user-images.githubusercontent.com/35343652/128597001-f08eb11c-dbae-4881-a74c-e14cf424b354.png"/>
 </div>
 
+
+[Demo Link](http://sahilsaha.me/react-carousel-minimal-demo/)
 
 
 ## Props
