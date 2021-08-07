@@ -117,11 +117,12 @@
 }
 .pause-icon {
   position: absolute;
-  top: 38%;
-  left: 47%;
-  right: 50%;
+  /* top: 38%; */
+  left: 15px;
+  bottom: 2px;
+  /* right: 50%; */
   opacity: 1;
-  font-size: 100px !important;
+  font-size: 40px !important;
 }
 
 .pause {

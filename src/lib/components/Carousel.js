@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Swipe from 'react-easy-swipe';
 import './styles/index.css';
 
 function Carousel(props) {
@@ -14,9 +15,10 @@ function Carousel(props) {
     style,
     captionPosition,
     dots,
-    automatic
+    automatic,
+    pauseIconColor,
   } = props;
-
+  ///console.log(pauseIconColor);
   const [slide, setSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [change, setChange] = useState(0);
@@ -90,54 +92,62 @@ function Carousel(props) {
   return (
     <div style={style} className="box">
       <div style={{ maxWidth: width ? width : "600px", height: height ? height : "400px" }}>
-        <div
-          className="carousel-container"
-          style={{ borderRadius: radius }}
+        <Swipe
+          onSwipeRight={() => { addSlide(-1); setChange(!change) }}
+          onSwipeLeft={() => { addSlide(1); setChange(!change) }}
         >
-          {
-            data.map((item, index) => {
-              return (
-                <div
-                  className="carousel-item fade"
-                  onMouseDown={e => {
-                    console.log("in");
-                    setIsPaused(true);
-                  }}
-                  onMouseUp={e => {
-                    console.log("out");
-                    setIsPaused(false);
-                  }}
-                  onMouseLeave={e => {
-                    console.log("out");
-                    setIsPaused(false);
-                  }}
-                  onTouchStart={e => {
-                    setIsPaused(true);
-                  }}
-                  onTouchEnd={e => {
-                    console.log("out");
-                    setIsPaused(false);
-                  }}
-                  key={index}>
-                  {slideNumber &&
-                    <div className="slide-number" style={slideNumberStyle}>{index + 1} / {data.length}</div>
-                  }
-                  <img src={item.image} alt={item.caption} className="carousel-image" style={{ borderRadius: radius }} />
-                  <div className={`carousel-caption-${captionPosition ? captionPosition : "bottom"}`} style={captionStyle}>{item.caption}</div>
-                  {/* {automatic && <div className="bar">
+          <div
+            className="carousel-container"
+            style={{ borderRadius: radius }}
+          >
+            {
+              data.map((item, index) => {
+                return (
+                  <div
+                    className="carousel-item fade"
+                    onMouseDown={e => {
+                      automatic &&
+                        setIsPaused(true);
+                    }}
+                    onMouseUp={e => {
+                      automatic &&
+                        setIsPaused(false);
+                    }}
+                    onMouseLeave={e => {
+                      automatic &&
+                        setIsPaused(false);
+                    }}
+                    onTouchStart={e => {
+                      automatic &&
+                        setIsPaused(true);
+                    }}
+                    onTouchEnd={e => {
+                      automatic &&
+                        setIsPaused(false);
+                    }}
+                    key={index}>
+                    {slideNumber &&
+                      <div className="slide-number" style={slideNumberStyle}>{index + 1} / {data.length}</div>
+                    }
+                    <img src={item.image} alt={item.caption} className="carousel-image" style={{ borderRadius: radius }} />
+                    {isPaused &&
+                      <div className="pause-icon pause" style={{ color: pauseIconColor ? pauseIconColor : "white" }}>II</div>}
+                    <div className={`carousel-caption-${captionPosition ? captionPosition : "bottom"}`} style={captionStyle}>{item.caption}</div>
+                    {/* {automatic && <div className="bar">
                     <div className="progress" id="progress">
 
                     </div>
                   </div>} */}
-                </div>
-              );
-            })
-          }
-          {isPaused &&
-            <div className="pause-icon pause" style={{ color: "white" }}>II</div>}
-          <a className="prev" onClick={(e) => { addSlide(-1); setChange(!change) }}>&#10094;</a>
-          <a className="next" onClick={(e) => { addSlide(1); setChange(!change) }}>&#10095;</a>
-        </div>
+                  </div>
+                );
+              })
+            }
+
+            <a className="prev" onClick={(e) => { addSlide(-1); setChange(!change) }}>&#10094;</a>
+            <a className="next" onClick={(e) => { addSlide(1); setChange(!change) }}>&#10095;</a>
+          </div>
+        </Swipe>
+
         {dots &&
           <div className="dots">
             {

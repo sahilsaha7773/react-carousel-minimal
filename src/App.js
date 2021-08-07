@@ -31,8 +31,8 @@ function App() {
         <Carousel
           data={data}
           time={4000}
-          width="600px"
-          height="400px"
+          width="400px"
+          height="200px"
           captionStyle={captionStyle}
           radius="10px"
           slideNumber={true}
@@ -44,6 +44,7 @@ function App() {
           }}
           automatic={true}
           dots={true}
+          pauseIconColor="white"
         />
       </div>
     </div>
