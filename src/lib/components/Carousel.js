@@ -17,6 +17,7 @@ function Carousel(props) {
     dots,
     automatic,
     pauseIconColor,
+    pauseIconSize,
   } = props;
   ///console.log(pauseIconColor);
   const [slide, setSlide] = useState(0);
@@ -131,7 +132,10 @@ function Carousel(props) {
                     }
                     <img src={item.image} alt={item.caption} className="carousel-image" style={{ borderRadius: radius }} />
                     {isPaused &&
-                      <div className="pause-icon pause" style={{ color: pauseIconColor ? pauseIconColor : "white" }}>II</div>}
+                      <div className="pause-icon pause" style={{
+                        color: pauseIconColor ? pauseIconColor : "white",
+                        fontSize: pauseIconSize ? pauseIconSize : "40px"
+                      }}>II</div>}
                     <div className={`carousel-caption-${captionPosition ? captionPosition : "bottom"}`} style={captionStyle}>{item.caption}</div>
                     {/* {automatic && <div className="bar">
                     <div className="progress" id="progress">
