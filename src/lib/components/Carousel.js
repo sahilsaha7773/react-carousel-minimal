@@ -3,6 +3,7 @@ import Swipe from 'react-easy-swipe';
 import './styles/index.css';
 
 function Carousel(props) {
+  //Get All the Props
   var {
     data,
     time,
@@ -20,15 +21,17 @@ function Carousel(props) {
     pauseIconSize,
     slideBackgroundColor,
     slideImageFit,
-    fixedHeight
+    fixedHeight,
+    thumbnails,
+    thumbnailWidth
   } = props;
-  var heightProperty = fixedHeight ? "height" : "maxHeight";
-  
-  //console.log(slideBackgroundColor);
+
+  //Initialize States
   const [slide, setSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [change, setChange] = useState(0);
-  // const [progressWidth, setProgressWidth] = useState(1);
+
+  //Function to change slide
   const addSlide = (n) => {
     if (slide + n >= data.length)
       setSlide(0);
@@ -38,11 +41,11 @@ function Carousel(props) {
       setSlide(slide + n);
   }
 
+  //Start the automatic change of slide
   useEffect(() => {
     if (automatic) {
       var index = slide;
       const interval = setInterval(() => {
-        console.log(isPaused);
         if (!isPaused) {
 
           setSlide(index);
@@ -53,18 +56,29 @@ function Carousel(props) {
             index = data.length - 1;
         }
       }, time ? time : 2000);
-
-
-
       return () => { clearInterval(interval); };
     }
 
   }, [isPaused, change]);
 
-  useEffect(() => {
+  function scrollTo(el) {
+    const elLeft = el.offsetLeft + el.offsetWidth;
+    const elParentLeft = el.parentNode.offsetLeft + el.parentNode.offsetWidth;
 
+    // check if element not in view
+    if (elLeft >= elParentLeft + el.parentNode.scrollLeft) {
+      el.parentNode.scroll({ left: elLeft - elParentLeft, behavior: 'smooth' })
+    } else if (elLeft <= el.parentNode.offsetLeft + el.parentNode.scrollLeft) {
+      el.parentNode.scroll({ left: el.offsetLeft - el.parentNode.offsetLeft, behavior: 'smooth' })
+    }
+  }
+
+  //Listens to slide state changes
+  useEffect(() => {
     var slides = document.getElementsByClassName("carousel-item");
     var dots = document.getElementsByClassName("dot");
+
+
     var slideIndex = slide;
     for (var i = 0; i < data.length; i++) {
       slides[i].style.display = "none";
@@ -72,27 +86,21 @@ function Carousel(props) {
     for (var i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
     }
+    //If thumbnails are enabled
+    if (thumbnails) {
+      var thumbnailsArray = document.getElementsByClassName("thumbnail");
+      for (var i = 0; i < thumbnailsArray.length; i++) {
+        thumbnailsArray[i].className = thumbnailsArray[i].className.replace(" active-thumbnail", "");
+      }
+      if (thumbnailsArray[slideIndex] != undefined)
+        thumbnailsArray[slideIndex].className += " active-thumbnail";
+      scrollTo(document.getElementById(`thumbnail-${slideIndex}`));
+    }
+
     if (slides[slideIndex] != undefined)
       slides[slideIndex].style.display = "block";
     if (dots[slideIndex] != undefined)
       dots[slideIndex].className += " active";
-
-    // var width = progressWidth;
-    // const progressInterval = setInterval(() => {
-    //   if (isPaused) return;
-    //   var elem = document.getElementById('progress');
-    //   if (progressWidth >= 100) {
-    //     setProgressWidth(1);
-    //     //clearInterval(progressInterval);
-    //   }
-    //   else {
-    //     setProgressWidth(progressWidth + 1);
-    //     //console.log(progressWidth);
-    //     elem.style.width = (progressWidth) + '%';
-    //   }
-    // }, time / 100);
-
-    //return () => clearInterval(progressInterval);
   }, [slide, isPaused]);
 
   return (
@@ -159,11 +167,7 @@ function Carousel(props) {
                         fontSize: pauseIconSize ? pauseIconSize : "40px"
                       }}>II</div>}
                     <div className={`carousel-caption-${captionPosition ? captionPosition : "bottom"}`} style={captionStyle}>{item.caption}</div>
-                    {/* {automatic && <div className="bar">
-                    <div className="progress" id="progress">
 
-                    </div>
-                  </div>} */}
                   </div>
                 );
               })
@@ -171,16 +175,36 @@ function Carousel(props) {
 
             <a className="prev" onClick={(e) => { addSlide(-1); setChange(!change) }}>&#10094;</a>
             <a className="next" onClick={(e) => { addSlide(1); setChange(!change) }}>&#10095;</a>
+            {dots &&
+              <div className="dots">
+                {
+                  data.map((item, index) => {
+                    return (
+                      <span className="dot" key={index} onClick={(e) => { setSlide(index); setChange(!change); }}></span>
+                    );
+                  })
+                }
+              </div>
+            }
           </div>
+
         </Swipe>
 
-        {dots &&
-          <div className="dots">
+        {thumbnails &&
+          <div className="thumbnails" id="thumbnail-div" style={{ maxWidth: width }}>
             {
               data.map((item, index) => {
                 return (
-                  <span className="dot" key={index} onClick={(e) => setSlide(index)}></span>
-                );
+                  <img
+                    width={thumbnailWidth ? thumbnailWidth : "100px"}
+                    src={item.image}
+                    alt={item.caption}
+                    className="thumbnail"
+                    id={`thumbnail-${index}`}
+                    key={index}
+                    onClick={(e) => { setSlide(index); setChange(!change) }}
+                  />
+                )
               })
             }
           </div>

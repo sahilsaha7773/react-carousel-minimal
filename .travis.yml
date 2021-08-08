@@ -1,8 +1,14 @@
 language: node_js
-
 node_js:
-  - "12"
-
+- '12'
 script:
-    - npm test
-    - npm run build
+- npm test
+- npm run build
+deploy:
+  provider: npm
+  email: sahilsahacode@gmail.com
+  api_key:
+    secure: wtOWzkf0DyjiffGfgevjgxoeKYD7vMGL0Wakxs/gBbQvEFOtE67lb05BlsAGV+gaz7WjyGl/wlV8rB/Gd93XuqDJa/QgnVDlZGq/PkYOIGF1LiBwe66jn2PRl0EabPeUcwdXy5he0ubEitZU6hOG7MyHsLS8vSWbFBs7OHjas7I/FNbXrupRnqbg/a3eAOibsk4BErjFXsyOrE/DgO6syYX8ps2UJawI0xxVxpBjQqgiBmqolkhr8o37FIHtgDtJf00v4Amy3Eon9hrSaj2lWf0b49/YYuPrtAPFLZ+KNAnHGoTxV+Txvgv3oQ+DpRKXpMPPMlyj7pHWgLZGKHl3dVeXK40doZeqcfBiiRLBVwYnxCz1hWhKGcjrSBoGu9MpmgsRL8XSupQXQCh9t1+r8LVtd+i46L977rAZLAO0H/Imxdyv6fdEC57vFbGQ5gmbynA+gk05jCL4WVfDOO8qeBC0Ee7CaIoypap1c74rKWW4wT3m5gB1azUN7I11COgvU7ue/8rBV7rZw9pVaylax08wAMMFB+K6wTmgqeNkI6b6N81SXIhKV4tj6cWc4WulN8rjs3LW+I9T2+KDcFKq7tMjJyXYxHKNPC5nQLyF/0hK37dhOgZZG0OlZVsvH+BHNmtJ/bD4+tN1KxzNyCinfSDdfJ73IqkY7+k0r0uwqUg=
+  on:
+    tags: true
+    repo: sahilsaha7773/react-carousel-minimal

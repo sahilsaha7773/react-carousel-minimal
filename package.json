@@ -3,6 +3,7 @@
   "description": "Responsive, minimal and customizable Carousel Component for React Projects.",
   "version": "1.2.1",
   "private": false,
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
