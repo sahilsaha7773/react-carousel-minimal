@@ -119,8 +119,7 @@ export default App;
 
 ```
 <div align="center">
-
-  <img src="https://user-images.githubusercontent.com/35343652/128626071-a6ec7763-90ea-4b25-988a-17db5dae7f38.png"/>
+  <img src="https://user-images.githubusercontent.com/35343652/128626830-f2920f94-8ca0-4f10-badc-5ba6bbae5a72.png"/>
 </div>
 
 
@@ -143,5 +142,5 @@ export default App;
 | slideBackgroundColor | string              | Sets the slides' background color, eg: `darkgrey`|
 | slideImageFit        | string              | Sets the `object-fit` of the slides' image,<br/>available options `contain` and `cover`|
 | thumbnails          | boolean              | Enables thumbnail indicators |
-| thumbnailWidth      | string               | Width of the thumbnail, eg: `100px`|
+| thumbnailWidth      | string               | Width of the thumbnail, defaults to `100px`|
  
