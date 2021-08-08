@@ -24,6 +24,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function Carousel(props) {
+  //Get All the Props
   var {
     data,
     time,
@@ -41,24 +42,24 @@ function Carousel(props) {
     pauseIconSize,
     slideBackgroundColor,
     slideImageFit,
-    fixedHeight
-  } = props;
-  var heightProperty = fixedHeight ? "height" : "maxHeight"; //console.log(slideBackgroundColor);
+    fixedHeight,
+    thumbnails,
+    thumbnailWidth
+  } = props; //Initialize States
 
   const [slide, setSlide] = (0, _react.useState)(0);
   const [isPaused, setIsPaused] = (0, _react.useState)(false);
-  const [change, setChange] = (0, _react.useState)(0); // const [progressWidth, setProgressWidth] = useState(1);
+  const [change, setChange] = (0, _react.useState)(0); //Function to change slide
 
   const addSlide = n => {
     if (slide + n >= data.length) setSlide(0);else if (slide + n < 0) setSlide(data.length - 1);else setSlide(slide + n);
-  };
+  }; //Start the automatic change of slide
+
 
   (0, _react.useEffect)(() => {
     if (automatic) {
       var index = slide;
       const interval = setInterval(() => {
-        console.log(isPaused);
-
         if (!isPaused) {
           setSlide(index);
           index++;
@@ -71,6 +72,25 @@ function Carousel(props) {
       };
     }
   }, [isPaused, change]);
+
+  function scrollTo(el) {
+    const elLeft = el.offsetLeft + el.offsetWidth;
+    const elParentLeft = el.parentNode.offsetLeft + el.parentNode.offsetWidth; // check if element not in view
+
+    if (elLeft >= elParentLeft + el.parentNode.scrollLeft) {
+      el.parentNode.scroll({
+        left: elLeft - elParentLeft,
+        behavior: 'smooth'
+      });
+    } else if (elLeft <= el.parentNode.offsetLeft + el.parentNode.scrollLeft) {
+      el.parentNode.scroll({
+        left: el.offsetLeft - el.parentNode.offsetLeft,
+        behavior: 'smooth'
+      });
+    }
+  } //Listens to slide state changes
+
+
   (0, _react.useEffect)(() => {
     var slides = document.getElementsByClassName("carousel-item");
     var dots = document.getElementsByClassName("dot");
@@ -82,24 +102,22 @@ function Carousel(props) {
 
     for (var i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
+    } //If thumbnails are enabled
+
+
+    if (thumbnails) {
+      var thumbnailsArray = document.getElementsByClassName("thumbnail");
+
+      for (var i = 0; i < thumbnailsArray.length; i++) {
+        thumbnailsArray[i].className = thumbnailsArray[i].className.replace(" active-thumbnail", "");
+      }
+
+      if (thumbnailsArray[slideIndex] != undefined) thumbnailsArray[slideIndex].className += " active-thumbnail";
+      scrollTo(document.getElementById("thumbnail-".concat(slideIndex)));
     }
 
     if (slides[slideIndex] != undefined) slides[slideIndex].style.display = "block";
-    if (dots[slideIndex] != undefined) dots[slideIndex].className += " active"; // var width = progressWidth;
-    // const progressInterval = setInterval(() => {
-    //   if (isPaused) return;
-    //   var elem = document.getElementById('progress');
-    //   if (progressWidth >= 100) {
-    //     setProgressWidth(1);
-    //     //clearInterval(progressInterval);
-    //   }
-    //   else {
-    //     setProgressWidth(progressWidth + 1);
-    //     //console.log(progressWidth);
-    //     elem.style.width = (progressWidth) + '%';
-    //   }
-    // }, time / 100);
-    //return () => clearInterval(progressInterval);
+    if (dots[slideIndex] != undefined) dots[slideIndex].className += " active";
   }, [slide, isPaused]);
   return /*#__PURE__*/_react.default.createElement("div", {
     style: style,
@@ -182,13 +200,35 @@ function Carousel(props) {
       addSlide(1);
       setChange(!change);
     }
-  }, "\u276F"))), dots && /*#__PURE__*/_react.default.createElement("div", {
+  }, "\u276F"), dots && /*#__PURE__*/_react.default.createElement("div", {
     className: "dots"
   }, data.map((item, index) => {
     return /*#__PURE__*/_react.default.createElement("span", {
       className: "dot",
       key: index,
-      onClick: e => setSlide(index)
+      onClick: e => {
+        setSlide(index);
+        setChange(!change);
+      }
+    });
+  })))), thumbnails && /*#__PURE__*/_react.default.createElement("div", {
+    className: "thumbnails",
+    id: "thumbnail-div",
+    style: {
+      maxWidth: width
+    }
+  }, data.map((item, index) => {
+    return /*#__PURE__*/_react.default.createElement("img", {
+      width: thumbnailWidth ? thumbnailWidth : "100px",
+      src: item.image,
+      alt: item.caption,
+      className: "thumbnail",
+      id: "thumbnail-".concat(index),
+      key: index,
+      onClick: e => {
+        setSlide(index);
+        setChange(!change);
+      }
     });
   }))));
 }

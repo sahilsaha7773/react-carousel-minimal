@@ -1,4 +1,10 @@
 
+<a name="v1.3.1"></a>
+## [v1.3.1](https://github.com/sahilsaha7773/react-carousel-minimal/compare/v1.2.1...v1.3.1)
+
+> 2021-08-08
+
+
 <a name="v1.2.1"></a>
 ## [v1.2.1](https://github.com/sahilsaha7773/react-carousel-minimal/compare/v1.0.0...v1.2.1)
 
