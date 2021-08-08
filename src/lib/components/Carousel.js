@@ -80,26 +80,27 @@ function Carousel(props) {
 
 
     var slideIndex = slide;
-    for (var i = 0; i < data.length; i++) {
+    var i;
+    for (i = 0; i < data.length; i++) {
       slides[i].style.display = "none";
     }
-    for (var i = 0; i < dots.length; i++) {
+    for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
     }
     //If thumbnails are enabled
     if (thumbnails) {
       var thumbnailsArray = document.getElementsByClassName("thumbnail");
-      for (var i = 0; i < thumbnailsArray.length; i++) {
+      for (i = 0; i < thumbnailsArray.length; i++) {
         thumbnailsArray[i].className = thumbnailsArray[i].className.replace(" active-thumbnail", "");
       }
-      if (thumbnailsArray[slideIndex] != undefined)
+      if (thumbnailsArray[slideIndex] !== undefined)
         thumbnailsArray[slideIndex].className += " active-thumbnail";
       scrollTo(document.getElementById(`thumbnail-${slideIndex}`));
     }
 
-    if (slides[slideIndex] != undefined)
+    if (slides[slideIndex] !== undefined)
       slides[slideIndex].style.display = "block";
-    if (dots[slideIndex] != undefined)
+    if (dots[slideIndex] !== undefined)
       dots[slideIndex].className += " active";
   }, [slide, isPaused]);
 
@@ -190,26 +191,27 @@ function Carousel(props) {
 
         </Swipe>
 
-        {thumbnails &&
-          <div className="thumbnails" id="thumbnail-div" style={{ maxWidth: width }}>
-            {
-              data.map((item, index) => {
-                return (
-                  <img
-                    width={thumbnailWidth ? thumbnailWidth : "100px"}
-                    src={item.image}
-                    alt={item.caption}
-                    className="thumbnail"
-                    id={`thumbnail-${index}`}
-                    key={index}
-                    onClick={(e) => { setSlide(index); setChange(!change) }}
-                  />
-                )
-              })
-            }
-          </div>
-        }
+
       </div>
+      {thumbnails &&
+        <div className="thumbnails" id="thumbnail-div" style={{ maxWidth: width }}>
+          {
+            data.map((item, index) => {
+              return (
+                <img
+                  width={thumbnailWidth ? thumbnailWidth : "100px"}
+                  src={item.image}
+                  alt={item.caption}
+                  className="thumbnail"
+                  id={`thumbnail-${index}`}
+                  key={index}
+                  onClick={(e) => { setSlide(index); setChange(!change) }}
+                />
+              )
+            })
+          }
+        </div>
+      }
     </div >
   )
 }

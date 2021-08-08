@@ -78,7 +78,6 @@ function App() {
             style={{
               textAlign: "center",
               maxWidth: "850px",
-              maxHeight: "500px",
               margin: "40px auto",
             }}
           />

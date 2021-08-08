@@ -95,12 +95,13 @@ function Carousel(props) {
     var slides = document.getElementsByClassName("carousel-item");
     var dots = document.getElementsByClassName("dot");
     var slideIndex = slide;
+    var i;
 
-    for (var i = 0; i < data.length; i++) {
+    for (i = 0; i < data.length; i++) {
       slides[i].style.display = "none";
     }
 
-    for (var i = 0; i < dots.length; i++) {
+    for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
     } //If thumbnails are enabled
 
@@ -108,16 +109,16 @@ function Carousel(props) {
     if (thumbnails) {
       var thumbnailsArray = document.getElementsByClassName("thumbnail");
 
-      for (var i = 0; i < thumbnailsArray.length; i++) {
+      for (i = 0; i < thumbnailsArray.length; i++) {
         thumbnailsArray[i].className = thumbnailsArray[i].className.replace(" active-thumbnail", "");
       }
 
-      if (thumbnailsArray[slideIndex] != undefined) thumbnailsArray[slideIndex].className += " active-thumbnail";
+      if (thumbnailsArray[slideIndex] !== undefined) thumbnailsArray[slideIndex].className += " active-thumbnail";
       scrollTo(document.getElementById("thumbnail-".concat(slideIndex)));
     }
 
-    if (slides[slideIndex] != undefined) slides[slideIndex].style.display = "block";
-    if (dots[slideIndex] != undefined) dots[slideIndex].className += " active";
+    if (slides[slideIndex] !== undefined) slides[slideIndex].style.display = "block";
+    if (dots[slideIndex] !== undefined) dots[slideIndex].className += " active";
   }, [slide, isPaused]);
   return /*#__PURE__*/_react.default.createElement("div", {
     style: style,
@@ -211,7 +212,7 @@ function Carousel(props) {
         setChange(!change);
       }
     });
-  })))), thumbnails && /*#__PURE__*/_react.default.createElement("div", {
+  }))))), thumbnails && /*#__PURE__*/_react.default.createElement("div", {
     className: "thumbnails",
     id: "thumbnail-div",
     style: {
@@ -230,7 +231,7 @@ function Carousel(props) {
         setChange(!change);
       }
     });
-  }))));
+  })));
 }
 
 var _default = Carousel;
