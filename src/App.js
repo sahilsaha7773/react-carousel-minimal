@@ -83,19 +83,6 @@ function App() {
             }}
           />
         </div>
-
-        {/* <h3>Features</h3>
-        <ul>
-          <li>Responsive</li>
-          Responsive
-          Customizable
-          Infinite loop
-          Autoplay with custom duration
-          Supports text caption
-          Pause autoplay on hold
-          Slide number indicators
-
-        </ul> */}
       </div>
     </div>
   );

@@ -145,7 +145,7 @@
 
 .thumbnails {
   display: flex;
-  margin-top: 20px;
+  margin-top: 10px;
   align-items: center;
   overflow: scroll;
 }
@@ -153,10 +153,10 @@
   display: none;
 }
 .thumbnail {
-  margin: 0 10px;
+  margin: 0 5px;
 }
 .active-thumbnail {
-  border: #1d48d4 solid 4px;
+  border: #476ff1 solid 3px;
 }
 @keyframes pause {
   0% {opacity: .2; }
@@ -179,7 +179,13 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .prev, .next,.carousel-caption-bottom, .carousel-caption-center, .carousel-caption-top {
+  .prev,
+  .next,
+  .carousel-caption-bottom, 
+  .carousel-caption-center, 
+  .carousel-caption-top, 
+  .slide-number 
+  {
     font-size: 20px !important;
   }
   .dot {
