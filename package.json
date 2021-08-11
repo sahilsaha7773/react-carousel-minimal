@@ -1,7 +1,7 @@
 {
   "name": "react-carousel-minimal",
   "description": "Responsive, minimal and customizable Carousel Component for React Projects.",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "private": false,
   "license": "MIT",
   "main": "dist/index.js",
@@ -53,5 +53,28 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3"
-  }
+  },
+  "keywords": [
+    "react",
+    "carousel",
+    "react-carousel",
+    "react-component",
+    "react-slideshow",
+    "react-gallery",
+    "slideshow",
+    "image-gallery",
+    "gallery",
+    "slider",
+    "react-slider",
+    "image-slider",
+    "responsive",
+    "customizable",
+    "responsive-carousel",
+    "react-responsive-carousel",
+    "minimal",
+    "react-minimal-carousel",
+    "minimal-carousel",
+    "swipe",
+    "images"
+  ]
 }

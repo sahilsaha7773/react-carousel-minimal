@@ -2,29 +2,26 @@ import React, { useEffect, useState } from 'react'
 import Swipe from 'react-easy-swipe';
 import './styles/index.css';
 
-function Carousel(props) {
-  //Get All the Props
-  var {
-    data,
-    time,
-    width,
-    height,
-    captionStyle,
-    slideNumberStyle,
-    radius,
-    slideNumber,
-    style,
-    captionPosition,
-    dots,
-    automatic,
-    pauseIconColor,
-    pauseIconSize,
-    slideBackgroundColor,
-    slideImageFit,
-    fixedHeight,
-    thumbnails,
-    thumbnailWidth
-  } = props;
+function Carousel({
+  data,
+  time,
+  width,
+  height,
+  captionStyle,
+  slideNumberStyle,
+  radius,
+  slideNumber,
+  style,
+  captionPosition,
+  dots,
+  automatic,
+  pauseIconColor,
+  pauseIconSize,
+  slideBackgroundColor,
+  slideImageFit,
+  thumbnails,
+  thumbnailWidth
+}) {
 
   //Initialize States
   const [slide, setSlide] = useState(0);
