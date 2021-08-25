@@ -185,8 +185,11 @@ function Carousel(_ref) {
       }
     }, "II"), /*#__PURE__*/_react.default.createElement("div", {
       className: "carousel-caption-".concat(captionPosition ? captionPosition : "bottom"),
-      style: captionStyle
-    }, item.caption));
+      style: captionStyle,
+      dangerouslySetInnerHTML: {
+        __html: item.caption
+      }
+    }));
   }), /*#__PURE__*/_react.default.createElement("a", {
     className: "prev",
     onClick: e => {

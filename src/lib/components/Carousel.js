@@ -164,7 +164,7 @@ function Carousel({
                         color: pauseIconColor ? pauseIconColor : "white",
                         fontSize: pauseIconSize ? pauseIconSize : "40px"
                       }}>II</div>}
-                    <div className={`carousel-caption-${captionPosition ? captionPosition : "bottom"}`} style={captionStyle}>{item.caption}</div>
+                    <div className={`carousel-caption-${captionPosition ? captionPosition : "bottom"}`} style={captionStyle} dangerouslySetInnerHTML={{ __html: item.caption }}></div>
 
                   </div>
                 );
