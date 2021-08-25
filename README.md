@@ -16,7 +16,7 @@ Easy to use, responsive and customizable carousel component for React Projects.
   - Customizable
   - Infinite loop
   - Autoplay with custom duration
-  - Supports text caption
+  - Supports HTML content as caption
   - Pause autoplay on hold with pause icon and customizations
   - Slide number indicators
   - Swipe to go to next slide on touch devices
@@ -32,7 +32,11 @@ function App() {
  const data = [
     {
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
-      caption: "San Francisco"
+      caption: `<div>
+                  San Francisco
+                  <br/>
+                  Next line
+                </div>`
     },
     {
       image: "https://cdn.britannica.com/s:800x450,c:crop/35/204435-138-2F2B745A/Time-lapse-hyper-lapse-Isle-Skye-Scotland.jpg",
@@ -126,7 +130,7 @@ export default App;
 ## Props
 |     Name       |           Value            |    Description |
 |:--------------:|:--------------------------:|:---------------|
-|   data         |           array            | Array of carousel items, <br/> containg JSON elements of the form <br/>{<br/>  image: IMAGE_PATH,<br/> caption: TEXT_CAPTION<br/> }|
+|   data         |           array            | Array of carousel items, <br/> containg JSON elements of the form <br/>{<br/>  image: IMAGE_PATH,<br/> caption: HTML_CAPTION<br/> }|
 |   automatic    |           boolean          | Enable auto play |
 |   time         |           number           | Interval in milliseconds <br/> after which it autmatically goes to <br/> the next slide if `automatic` is `true`,<br/> defaults to `2000`|
 | width          |           string           | Width of the Carousel, eg: `600px` |
