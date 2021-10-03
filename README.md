@@ -23,6 +23,7 @@ Check out the demo here:
   - Swipe to go to next slide on touch devices
   - Custom slide background color
   - Thumbnail slide indicators
+  - Option to hide nav buttons
 
 ## Usage
 
@@ -148,4 +149,5 @@ export default App;
 | slideImageFit        | string              | Sets the `object-fit` of the slides' image,<br/>available options `contain` and `cover`|
 | thumbnails          | boolean              | Enables thumbnail indicators |
 | thumbnailWidth      | string               | Width of the thumbnail, defaults to `100px`|
+| showNavBtn          | boolean              | Hide or show nav buttons, set to `true` by default |
  
