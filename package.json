@@ -1,7 +1,11 @@
 {
   "name": "react-carousel-minimal",
   "description": "Responsive, minimal and customizable Carousel Component for React Projects.",
-  "version": "1.3.4",
+  "author": {
+    "name": "Sahil Saha",
+    "url": "https://sahilsaha.me"
+  },
+  "version": "1.4.1",
   "private": false,
   "license": "MIT",
   "main": "dist/index.js",

@@ -42,7 +42,8 @@ function Carousel(_ref) {
     slideBackgroundColor,
     slideImageFit,
     thumbnails,
-    thumbnailWidth
+    thumbnailWidth,
+    showNavBtn = true
   } = _ref;
   //Initialize States
   const [slide, setSlide] = (0, _react.useState)(0);
@@ -78,12 +79,12 @@ function Carousel(_ref) {
     if (elLeft >= elParentLeft + el.parentNode.scrollLeft) {
       el.parentNode.scroll({
         left: elLeft - elParentLeft,
-        behavior: 'smooth'
+        behavior: "smooth"
       });
     } else if (elLeft <= el.parentNode.offsetLeft + el.parentNode.scrollLeft) {
       el.parentNode.scroll({
         left: el.offsetLeft - el.parentNode.offsetLeft,
-        behavior: 'smooth'
+        behavior: "smooth"
       });
     }
   } //Listens to slide state changes
@@ -190,13 +191,13 @@ function Carousel(_ref) {
         __html: item.caption
       }
     }));
-  }), /*#__PURE__*/_react.default.createElement("a", {
+  }), showNavBtn && /*#__PURE__*/_react.default.createElement("a", {
     className: "prev",
     onClick: e => {
       addSlide(-1);
       setChange(!change);
     }
-  }, "\u276E"), /*#__PURE__*/_react.default.createElement("a", {
+  }, "\u276E"), showNavBtn && /*#__PURE__*/_react.default.createElement("a", {
     className: "next",
     onClick: e => {
       addSlide(1);

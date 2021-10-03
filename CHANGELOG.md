@@ -1,3 +1,9 @@
+#### 1.4.1 (2021-10-03)
+
+##### Other Changes
+
+* //github.com/sahilsaha7773/react-carousel-minimal ([a6285b08](https://github.com/sahilsaha7773/react-carousel-minimal/commit/a6285b085bf6358fdc492a036b647424a68a98ff))
+
 
 <a name="v1.3.1"></a>
 ## [v1.3.1](https://github.com/sahilsaha7773/react-carousel-minimal/compare/v1.2.1...v1.3.1)

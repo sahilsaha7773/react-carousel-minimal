@@ -91,7 +91,7 @@ function App() {
             slideImageFit="cover"
             thumbnails={true}
             thumbnailWidth="100px"
-            showNavBtn={false}
+            showNavBtn={true}
             style={{
               textAlign: "center",
               maxWidth: "850px",
