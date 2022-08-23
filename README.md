@@ -1,4 +1,4 @@
-# React Carousel Minimal
+# React Carousel Minimal Next
 <p>
  <a href="https://www.travis-ci.com/sahilsaha7773/react-carousel-minimal"><img src="https://travis-ci.com/sahilsaha7773/react-carousel-minimal.svg?branch=master"/></a>
   <a href="https://badge.fury.io/js/react-carousel-minimal"><img src="https://badge.fury.io/js/react-carousel-minimal.svg" alt="npm version" /></a>
@@ -7,7 +7,7 @@
 Easy to use, responsive and customizable carousel component for React Projects.
 
 ## Installation
-`npm i react-carousel-minimal`
+`npm i react-carousel-minimal-next`
 
 Check out the demo here: 
 [Demo Link](http://sahilsaha.me/react-carousel-minimal-demo/)
@@ -28,7 +28,7 @@ Check out the demo here:
 ## Usage
 
 ```js
-import { Carousel } from 'react-carousel-minimal';
+import { Carousel } from 'react-carousel-minimal-next';
 
 function App() {
  const data = [
